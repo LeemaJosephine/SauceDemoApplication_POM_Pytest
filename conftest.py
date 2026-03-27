@@ -31,3 +31,5 @@ def setup_browser():
     driver.get(SauceDemoData.url)
     yield driver
     driver.quit()
+
+    ##
