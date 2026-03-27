@@ -22,7 +22,11 @@ def setup_browser():
     options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
-    driver = webdriver.Edge(options=options)
+
+    service = Service("C:\\WebDrivers\\msedgedriver.exe")
+    driver = webdriver.Edge(service=service)
+
+    # driver = webdriver.Edge(options=options)
     driver.maximize_window()
     driver.implicitly_wait(20)
     driver.get(SauceDemoData.url)
