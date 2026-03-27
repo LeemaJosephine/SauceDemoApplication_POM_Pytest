@@ -1,11 +1,15 @@
 """
 Store all the data here
 """
+import os
+
 
 class SauceDemoData:
 
     url="https://www.saucedemo.com/"
-    file_name ="C:\\Users\\Digital Suppliers\\PycharmProjects\\SauceLabDemo\\TestData\\TestData.xlsx"
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    file_name = os.path.join(BASE_DIR, "..", "TestData", "TestData.xlsx")
+    # file_name ="C:\\Users\\leema\\PycharmProjects\\SauceDemoApplication_POM_Pytest\\TestData\\TestData.xlsx"
 
     # Login
     sheet_name ="LoginTest"
