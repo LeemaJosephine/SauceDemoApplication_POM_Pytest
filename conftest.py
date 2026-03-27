@@ -19,26 +19,16 @@ def capture_screenshot(driver, step_name):
 @pytest.fixture
 def setup_browser():
     options = Options()
-
-    # 🔥 MUST for Jenkins
+     # 🔥 MUST for Jenkins
     options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-gpu")
-    options.add_argument("--remote-debugging-port=9222")
     options.add_argument("--window-size=1920,1080")
 
-    service = Service("C:\\WebDrivers\\msedgedriver.exe")
-
-    driver = webdriver.Edge(service=service, options=options)
-
-    # driver = webdriver.Edge(options=options)
+    driver = webdriver.Chrome(options=options)
     driver.maximize_window()
     driver.implicitly_wait(20)
     driver.get(SauceDemoData.url)
     yield driver
     driver.quit()
-
-    #driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()))
-    #driver = webdriver.Edge()
-    #Chrome(service=Service(ChromeDriverManager().install())))
