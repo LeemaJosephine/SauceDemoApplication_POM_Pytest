@@ -2,9 +2,9 @@
 import pytest
 import allure
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.drivers.edge import EdgeChromiumDriver
+from selenium.webdriver.edge.service import Service
+from selenium.webdriver.edge.options import Options
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
 
 from TestData.data import SauceDemoData
 
@@ -18,10 +18,17 @@ def capture_screenshot(driver, step_name):
 
 @pytest.fixture
 def setup_browser():
-    driver = webdriver.Edge()
-              #Chrome(service=Service(ChromeDriverManager().install())))
+    options = Options()
+    options.add_argument("--headless=new")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    driver = webdriver.Edge(options=options)
     driver.maximize_window()
     driver.implicitly_wait(20)
     driver.get(SauceDemoData.url)
     yield driver
     driver.quit()
+
+    #driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()))
+    #driver = webdriver.Edge()
+    #Chrome(service=Service(ChromeDriverManager().install())))
