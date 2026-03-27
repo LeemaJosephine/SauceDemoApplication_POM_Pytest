@@ -29,7 +29,7 @@ def setup_browser():
     options.add_argument("--disable-gpu")
     options.add_argument("--window-size=1920,1080")
 
-    # 🔥 Disable password popup
+    # Disable password popup
     prefs = {
         "credentials_enable_service": False,
         "profile.password_manager_enabled": False,
